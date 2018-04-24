@@ -16,7 +16,7 @@ class Navbar extends Component {
         {this.props.currentUser.isAuthenticated ? (
           <ul>
             <li>
-              <a href="javascript:void(0)" onClick={this.logout}>
+              <a href="/logout" onClick={this.logout}>
                 Log out
               </a>
             </li>
