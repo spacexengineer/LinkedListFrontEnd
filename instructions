@@ -1,0 +1,20 @@
+FRONTEND SECTION 1 SETUP
+
+- Create React App and install dependences and make folder structure
+- Create the redux store and set up reducers for Users, errors and index
+- Set Up App.js (without localStorage info), but add Provider and Router
+- Create Services/api.js
+- Create actions index.js / auth.js / errors.js
+- Create Main for homepage
+- Create Homepage component
+- Display the Navbar
+- Add routes for Navbar
+
+FRONTEND SECTION 2 LOGIN AND USERS UI
+
+- Create Authform
+- Finish Authform
+- Add Navbar and logout
+- Introduce MessageList and Message Item and CSS
+- MessageForm with CSS
+- Delete Message with CSS
