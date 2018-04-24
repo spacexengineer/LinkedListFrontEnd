@@ -16,9 +16,13 @@ export function authUser(type, userData) {
     return new Promise((resolve, reject) => {
       return apiCall("post", `/api/auth/${type}`, userData)
         .then(({ token, ...user }) => {
+          // once we have logged in, set a token in localStorage
           localStorage.setItem("jwtToken", token);
+          // set a header of Authorization
           setAuthorizationToken(token);
+          // set a currentUser in Redux
           dispatch(setCurrentUser(user));
+          // remove any error messages
           dispatch(removeError());
           resolve(); // indicate that the API call succeeded
         })
@@ -31,9 +35,13 @@ export function authUser(type, userData) {
 }
 
 export function logout() {
+  // we need to make this a thunk so that we can dispatch setCurrentUser
   return dispatch => {
+    // clear the token from localStorage
     localStorage.clear();
+    // remove the Authorization header
     setAuthorizationToken(false);
+    // set the currentUser to be {} in Redux
     dispatch(setCurrentUser({}));
   };
 }

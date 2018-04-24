@@ -43,50 +43,44 @@ class AuthForm extends Component {
     });
     return (
       <div>
-        <div>
+        <form onSubmit={this.handleSubmit}>
+          <h2>{heading}</h2>
+          {errors.message && <div>{errors.message}</div>}
           <div>
-            <form onSubmit={this.handleSubmit}>
-              <h2>{heading}</h2>
-              {errors.message && <div>{errors.message}</div>}
-              <div>
-                <label htmlFor="email">E-mail</label>
-                <input
-                  autoComplete="off"
-                  id="email"
-                  name="email"
-                  onChange={this.handleChange}
-                  type="text"
-                  value={email}
-                />
-              </div>
-              <div>
-                <label htmlFor="password">Password</label>
-                <input
-                  autoComplete="off"
-                  id="password"
-                  name="password"
-                  onChange={this.handleChange}
-                  type="password"
-                  value={password}
-                />
-              </div>
-              {!signIn && (
-                <div>
-                  <label htmlFor="username">Username</label>
-                  <input
-                    autoComplete="off"
-                    id="username"
-                    name="username"
-                    onChange={this.handleChange}
-                    type="text"
-                    value={username}
-                  />
-                </div>
-              )}
-              <button type="submit">{buttonText}</button>
-            </form>
+            <label htmlFor="email">E-mail</label>
+            <input
+              autoComplete="off"
+              id="email"
+              name="email"
+              onChange={this.handleChange}
+              type="text"
+              value={email}
+            />
           </div>
-        </div>
+          <div>
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              onChange={this.handleChange}
+              type="password"
+              value={password}
+            />
+          </div>
+          {!signIn && (
+            <div>
+              <label htmlFor="username">Username</label>
+              <input
+                id="username"
+                name="username"
+                onChange={this.handleChange}
+                type="text"
+                value={username}
+              />
+            </div>
+          )}
+          <button type="submit">{buttonText}</button>
+        </form>
       </div>
     );
   }
