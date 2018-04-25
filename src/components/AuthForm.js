@@ -20,6 +20,7 @@ class AuthForm extends Component {
         this.props.history.push("/");
       })
       .catch(() => {
+        // we failed to log in, display the error message
         return;
       });
   };

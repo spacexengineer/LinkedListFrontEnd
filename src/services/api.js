@@ -22,14 +22,11 @@ export function setTokenHeader(token) {
  * @param {object} data (optional) data in JSON form for POST requests
  */
 
-export function apiCall(method, path, data) {
-  return new Promise((resolve, reject) => {
-    return axios[method](path, data)
-      .then(res => {
-        return resolve(res.data);
-      })
-      .catch(err => {
-        return reject(err.response.data.error);
-      });
-  });
+export async function apiCall(method, path, data) {
+  try {
+    let res = await axios[method](path, data);
+    return res.data;
+  } catch (err) {
+    return Promise.reject(err.response.data.error);
+  }
 }

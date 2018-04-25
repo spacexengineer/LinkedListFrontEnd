@@ -11,26 +11,26 @@ export function setAuthorizationToken(token) {
  * @param {object} userData JSON object from form
  */
 export function authUser(type, userData) {
-  return dispatch => {
-    // wrap our thunk in a promise so we can wait for the API call
-    return new Promise((resolve, reject) => {
-      return apiCall("post", `/api/auth/${type}`, userData)
-        .then(({ token, ...user }) => {
-          // once we have logged in, set a token in localStorage
-          localStorage.setItem("jwtToken", token);
-          // set a header of Authorization
-          setAuthorizationToken(token);
-          // set a currentUser in Redux
-          dispatch(setCurrentUser(user));
-          // remove any error messages
-          dispatch(removeError());
-          resolve(); // indicate that the API call succeeded
-        })
-        .catch(err => {
-          dispatch(addError(err.message));
-          reject(); // indicate the API call failed
-        });
-    });
+  return async dispatch => {
+    try {
+      let { token, ...user } = await apiCall(
+        "post",
+        `/api/auth/${type}`,
+        userData
+      );
+      // once we have logged in, set a token in localStorage
+      localStorage.setItem("jwtToken", token);
+      // set a header of Authorization
+      setAuthorizationToken(token);
+      // set a currentUser in Redux
+      dispatch(setCurrentUser(user));
+      // remove any error messages
+      dispatch(removeError());
+      return;
+    } catch (err) {
+      dispatch(addError(err.message));
+      return Promise.reject(err); // indicate the API call failed
+    }
   };
 }
 
