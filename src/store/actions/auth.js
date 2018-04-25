@@ -20,7 +20,7 @@ export function authUser(type, data) {
       // set a header of Authorization
       setAuthorizationToken(authData.data.token);
       // set a currentUser in Redux
-      dispatch(setCurrentUser(newUser));
+      dispatch(setCurrentUser({ username: newUser.username }));
       // remove any error messages
       dispatch(removeError());
       return;
@@ -34,13 +34,13 @@ export function authUser(type, data) {
 export function loginUser(type, data) {
   return async dispatch => {
     try {
-      let { token, ...user } = await apiCall("post", `/user-auth`, { data });
+      let authData = await apiCall("post", `/user-auth`, { data });
       // once we have logged in, set a token in localStorage
-      localStorage.setItem("jwtToken", token);
+      localStorage.setItem("jwtToken", authData.data.token);
       // set a header of Authorization
-      setAuthorizationToken(token);
+      setAuthorizationToken(authData.data.token);
       // set a currentUser in Redux
-      dispatch(setCurrentUser(user));
+      dispatch(setCurrentUser({ username: data.username }));
       // remove any error messages
       dispatch(removeError());
       return;
