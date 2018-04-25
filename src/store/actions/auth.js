@@ -10,14 +10,31 @@ export function setAuthorizationToken(token) {
  * @param {string} type signin or signup user
  * @param {object} userData JSON object from form
  */
-export function authUser(type, userData) {
+export function authUser(type, data) {
   return async dispatch => {
     try {
-      let { token, ...user } = await apiCall(
-        "post",
-        `/api/auth/${type}`,
-        userData
-      );
+      let newUser = await apiCall("post", `/users`, { data });
+      let authData = await apiCall("post", `/user-auth`, { data });
+      // once we have logged in, set a token in localStorage
+      localStorage.setItem("jwtToken", authData.data.token);
+      // set a header of Authorization
+      setAuthorizationToken(authData.data.token);
+      // set a currentUser in Redux
+      dispatch(setCurrentUser(newUser));
+      // remove any error messages
+      dispatch(removeError());
+      return;
+    } catch (err) {
+      dispatch(addError(err.message));
+      return Promise.reject(err); // indicate the API call failed
+    }
+  };
+}
+
+export function loginUser(type, data) {
+  return async dispatch => {
+    try {
+      let { token, ...user } = await apiCall("post", `/user-auth`, { data });
       // once we have logged in, set a token in localStorage
       localStorage.setItem("jwtToken", token);
       // set a header of Authorization
