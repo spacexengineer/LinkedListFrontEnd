@@ -7,7 +7,9 @@ import { authUser, loginUser } from "../store/actions/auth";
 import Homepage from "../components/Homepage";
 import AuthForm from "../components/AuthForm";
 import withAuth from "../hocs/withAuth";
+import UsersShow from "../components/UsersShow";
 
+debugger;
 const Main = props => {
   const { authUser, currentUser, errors, removeError, loginUser } = props;
   return (
@@ -55,6 +57,13 @@ const Main = props => {
         <Route
           path="/secret"
           component={withAuth(() => <h1>Secret Page!</h1>)}
+        />
+        <Route
+          path="/users/:username"
+          // component={withAuth(() => <UsersShow {...props} />)}
+          component={props => (
+            <UsersShow {...props} currentUser={currentUser} />
+          )}
         />
         <Route
           exact

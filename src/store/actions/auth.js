@@ -1,7 +1,6 @@
 import { apiCall, setTokenHeader } from "../../services/api";
 import { addError, removeError } from "./errors";
 import { SET_CURRENT_USER } from "../actionTypes";
-
 export function setAuthorizationToken(token) {
   setTokenHeader(token);
 }
@@ -35,12 +34,16 @@ export function loginUser(type, data) {
   return async dispatch => {
     try {
       let authData = await apiCall("post", `/user-auth`, { data });
+
       // once we have logged in, set a token in localStorage
       localStorage.setItem("jwtToken", authData.data.token);
+
       // set a header of Authorization
       setAuthorizationToken(authData.data.token);
+
       // set a currentUser in Redux
       dispatch(setCurrentUser({ username: data.username }));
+
       // remove any error messages
       dispatch(removeError());
       return;

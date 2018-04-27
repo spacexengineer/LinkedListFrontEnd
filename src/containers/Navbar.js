@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../store/actions/auth";
 
+debugger;
 class Navbar extends Component {
   logout = e => {
     e.preventDefault();

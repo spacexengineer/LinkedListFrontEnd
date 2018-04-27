@@ -1,3 +1,8 @@
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const ADD_ERROR = "ADD_ERROR";
 export const REMOVE_ERROR = "REMOVE_ERROR";
+export const FETCH_USER = "FETCH_USER";
+
+export const FETCH_JOBS_REQUEST = "FETCH_JOBS_REQUEST";
+export const FETCH_JOBS_SUCCESS = "FETCH_JOBS_SUCCESS";
+export const FETCH_JOBS_FAIL = "FETCH_JOBS_FAIL";

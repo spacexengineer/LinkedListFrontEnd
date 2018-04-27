@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import FeedContainer from "../containers/FeedContainer";
 
 const Homepage = ({ currentUser }) => {
   if (!currentUser.isAuthenticated) {
@@ -11,7 +12,13 @@ const Homepage = ({ currentUser }) => {
       </div>
     );
   }
-  return <h1>You are logged in!</h1>;
+  debugger;
+  return (
+    <div>
+      <h1>You are logged in!</h1>
+      <FeedContainer />
+    </div>
+  );
 };
 
 Homepage.propTypes = {

@@ -2,7 +2,9 @@ import rootReducer from "../store/reducers";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
+debugger;
 export function configureStore() {
+  debugger;
   const store = createStore(
     rootReducer,
     compose(
