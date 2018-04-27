@@ -12,7 +12,14 @@ import ProfileContainer from "./ProfileContainer";
 
 // debugger;
 const Main = props => {
-  const { authUser, currentUser, errors, removeError, loginUser } = props;
+  const {
+    authUser,
+    currentUser,
+    errors,
+    removeError,
+    loginUser,
+    profile
+  } = props;
   debugger;
   return (
     <div className="container">
@@ -66,7 +73,13 @@ const Main = props => {
           // component={withAuth(() => <Profile {...props} />)}
           render={props => {
             debugger;
-            return <ProfileContainer {...props} currentUser={currentUser} />;
+            return (
+              <ProfileContainer
+                {...props}
+                currentUser={currentUser}
+                profile={profile}
+              />
+            );
           }}
         />
         <Route
