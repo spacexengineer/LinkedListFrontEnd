@@ -3,10 +3,11 @@ import { fetchJobsRequest } from "../store/actions/jobs";
 import Feed from "../components/Feed";
 
 function mapStateToProps(reduxState) {
-  debugger;
-  return {
+  let a = {
     jobs: reduxState.jobs
   };
+  debugger;
+  return a;
 }
-debugger;
+// debugger;
 export default connect(mapStateToProps, { fetchJobsRequest })(Feed);

@@ -4,32 +4,34 @@ import { addError } from "./errors";
 
 /* Action Creators */
 
-export function fetchJobsSuccess(jobs) {
-  // debugger;
+export function fetchProfileSuccess(profile) {
+  debugger;
   return {
-    type: t.FETCH_JOBS_SUCCESS,
-    jobs
+    type: t.FETCH_PROFILE_SUCCESS,
+    profile
   };
 }
 
 // dispatch provided from thunk
 // dispatch sends information to a reducer
 
-export function fetchJobsFail(err) {
+export function fetchProfileFail(err) {
   return dispatch => {
     dispatch(addError(err));
     return {
-      type: t.FETCH_JOBS_FAIL
+      type: t.FETCH_PROFILE_FAIL
     };
   };
 }
 
-export function fetchJobsRequest() {
+export function fetchProfileRequest(user) {
   return async dispatch => {
-    dispatch({ type: t.FETCH_JOBS_REQUEST });
+    debugger;
+    dispatch({ type: t.FETCH_PROFILE_REQUEST });
     try {
       // API call
-      const result = await apiCall("get", "/jobs"); // fetch the jobs
+      debugger;
+      const result = await apiCall("get", `/users/${user}`); // fetch the username
       /**
        * {
        *    data: [
@@ -39,14 +41,14 @@ export function fetchJobsRequest() {
        *   ]
        * }
        */
-      // debugger;
-      dispatch(fetchJobsSuccess(result.data));
+      debugger;
+      dispatch(fetchProfileSuccess(result.data));
     } catch (err) {
-      dispatch(fetchJobsFail(err));
+      dispatch(fetchProfileFail(err));
       Promise.reject();
     }
   };
 }
 
-//  FETCH_JOBS_REQUEST
-//  FETCH_JOBS_FAIL
+//  FETCH_PROFILE_REQUEST
+//  FETCH_PROFILE_FAIL

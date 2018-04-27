@@ -7,21 +7,21 @@ import Navbar from "./Navbar";
 import Main from "./Main";
 import jwtDecode from "jwt-decode";
 
-debugger;
+// debugger;
 const store = configureStore();
 
 if (localStorage.jwtToken) {
-  debugger;
+  // debugger;
   setAuthorizationToken(localStorage.jwtToken);
   // prevent someone from manually setting a key of 'jwtToken' in localStorage
   try {
-    debugger;
+    // debugger;
     store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
   } catch (e) {
     store.dispatch(setCurrentUser({}));
   }
 }
-debugger;
+// debugger;
 const App = () => (
   <Provider store={store}>
     <Router>

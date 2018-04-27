@@ -7,11 +7,13 @@ import { authUser, loginUser } from "../store/actions/auth";
 import Homepage from "../components/Homepage";
 import AuthForm from "../components/AuthForm";
 import withAuth from "../hocs/withAuth";
-import UsersShow from "../components/UsersShow";
+// import Profile from "../components/Profile";
+import ProfileContainer from "./ProfileContainer";
 
-debugger;
+// debugger;
 const Main = props => {
   const { authUser, currentUser, errors, removeError, loginUser } = props;
+  debugger;
   return (
     <div className="container">
       <Switch>
@@ -59,11 +61,13 @@ const Main = props => {
           component={withAuth(() => <h1>Secret Page!</h1>)}
         />
         <Route
+          exact
           path="/users/:username"
-          // component={withAuth(() => <UsersShow {...props} />)}
-          component={props => (
-            <UsersShow {...props} currentUser={currentUser} />
-          )}
+          // component={withAuth(() => <Profile {...props} />)}
+          render={props => {
+            debugger;
+            return <ProfileContainer {...props} currentUser={currentUser} />;
+          }}
         />
         <Route
           exact

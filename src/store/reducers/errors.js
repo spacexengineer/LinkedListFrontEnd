@@ -1,7 +1,7 @@
 import { ADD_ERROR, REMOVE_ERROR } from "../actionTypes";
 
 export default (state = { message: null }, action) => {
-  debugger;
+  // debugger;
   switch (action.type) {
     case ADD_ERROR:
       return { ...state, message: action.error };

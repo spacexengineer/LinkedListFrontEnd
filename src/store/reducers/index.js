@@ -2,12 +2,14 @@ import { combineReducers } from "redux";
 import currentUser from "./currentUser";
 import errors from "./errors";
 import jobs from "./jobs";
+import profile from "./profile";
 
-debugger;
+// debugger;
 const rootReducer = combineReducers({
   currentUser,
   errors,
-  jobs
+  jobs,
+  profile
 });
 
 /**

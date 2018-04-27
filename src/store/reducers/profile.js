@@ -1,22 +1,25 @@
-import { SET_CURRENT_USER, FETCH_USER } from "../actionTypes";
-
-// const FETCH_USER = "FETCH_USER";
+import * as t from "../actionTypes";
 
 const DEFAULT_STATE = {
   isAuthenticated: false,
   user: {}
 };
 
-export default (state = DEFAULT_STATE, action) => {
+function profileReducer(state = DEFAULT_STATE, action) {
   // debugger;
   switch (action.type) {
-    case SET_CURRENT_USER:
+    case t.FETCH_PROFILE_REQUEST:
+      return state;
+    case t.FETCH_PROFILE_SUCCESS:
+      debugger;
       return {
         // turn an empty object into false or an object with keys to be true
         isAuthenticated: !!Object.keys(action.user).length,
-        user: action.user
+        user: action.profile
       };
     default:
       return state;
   }
-};
+}
+
+export default profileReducer;

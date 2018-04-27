@@ -4,17 +4,17 @@ import { Link } from "react-router-dom";
 import { fetchUser } from "../store/actions";
 import { connect } from "react-redux";
 
-class UsersShow extends Component {
+class Profile extends Component {
   componentDidMount() {
     const { username } = this.props.match.params;
-    console.log(
-      "usersShow did mount username=",
-      username,
-      "match=",
-      this.props.match,
-      "currentUser=",
-      this.props.currentUser
-    );
+    // console.log(
+    //   "usersShow did mount username=",
+    //   username,
+    //   "match=",
+    //   this.props.match,
+    //   "currentUser=",
+    //   this.props.currentUser
+    // );
 
     // check if username in url matches current user logged in
     if (username === this.props.currentUser.user.username) {
@@ -27,7 +27,7 @@ class UsersShow extends Component {
 
   render() {
     // debugger;
-    console.log("usersShow render props=", this.props);
+    // console.log("usersShow render props=", this.props);
 
     const { user } = this.props;
 
@@ -43,7 +43,7 @@ class UsersShow extends Component {
   }
 }
 
-UsersShow.propTypes = {
+Profile.propTypes = {
   currentUser: PropTypes.object
 };
 
@@ -52,11 +52,11 @@ function mapStateToProps(state) {
     user: state.user
   };
   // debugger;
-  console.log("mapStateToProps", a);
+  // console.log("mapStateToProps", a);
   return a;
 }
 
-export default connect(mapStateToProps, { fetchUser })(UsersShow);
+export default connect(mapStateToProps, { fetchUser })(Profile);
 
 // currentUser = { this.props }
 

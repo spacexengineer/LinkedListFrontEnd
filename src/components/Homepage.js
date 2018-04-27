@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import FeedContainer from "../containers/FeedContainer";
+import ProfileContainer from "../containers/ProfileContainer";
 
 const Homepage = ({ currentUser }) => {
   if (!currentUser.isAuthenticated) {
@@ -15,8 +16,10 @@ const Homepage = ({ currentUser }) => {
   debugger;
   return (
     <div>
+      <Link to={`/users/${currentUser.user.username}`}>Go to your profile</Link>
       <h1>You are logged in!</h1>
       <FeedContainer />
+      {/* <ProfileContainer /> */}
     </div>
   );
 };

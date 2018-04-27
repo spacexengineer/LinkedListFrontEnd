@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Feed extends Component {
   componentDidMount() {
-    debugger;
+    // debugger;
     this.props.fetchJobsRequest();
   }
 
@@ -11,7 +11,7 @@ class Feed extends Component {
       return <div>Loading...</div>;
     }
 
-    debugger;
+    // debugger;
     return this.props.jobs.map(job => <li>{job.title}</li>);
   }
 }
